@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page 1";
+}
+
+<div class="text-center">
+    <form method="post">
+        <label for="fname">Password:</label><br>
+        <input type="password"  name="password1"><br>
+        <label for="lname">Re-Enter password:</label><br>
+        <input type="password"  name="password2"><br><br>
+        <input type="submit" value="Submit">
+        @*@Model.Message
+        @Html.Raw(Model.Message)
+        @Model.Messages*@
+
+        @foreach (var errorMessage in Model.Messages)
+        {
+            <p>@errorMessage</p>
+        }
+
+    </form>
+</div>
+<div id="test"></div>
