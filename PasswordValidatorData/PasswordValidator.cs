@@ -56,7 +56,38 @@ namespace PasswordValidatorData
 
         private static ValidationResult ValidateComplexity(string pwd1)
         {
-            return new ValidationResult { IsValid = false, Message = "Password is too simple" };
+            bool isNumber = false;
+            bool isUpper = false;
+            bool isLower = false;
+            bool isSpecChar = false;
+            bool complexity = false;
+            foreach (var character in pwd1)
+            {
+                if (char.IsNumber(character))
+                {
+                    isNumber = true;
+                }
+                else if (!char.IsLetterOrDigit(character))
+                {
+                    isSpecChar = true;
+                }
+                else if (char.IsUpper(character))
+                {
+                    isUpper = true;
+                }
+                else if (char.IsLower(character))
+                {
+                    isLower = true;
+                }
+            }
+
+            if (!isNumber || !isSpecChar || !isUpper || !isLower)
+            {
+                return new ValidationResult { IsValid = false, Message = "Password is too simple" };
+            }
+
+            return new ValidationResult { IsValid = true };
+
         }
     }
 }
